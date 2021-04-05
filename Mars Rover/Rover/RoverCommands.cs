@@ -4,15 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//Class to control all rover related functions
+
 namespace Mars_Rover.Rover
 {
     class RoverCommands
     {
+        //class variables
         private string direction = "NWSE";
         private int initX, initY;
         private char initD;
         private Random rnd = new Random();
 
+        //Constructor
         public RoverCommands(int platX, int platY)
         {        
             initX = rnd.Next(platX);
@@ -21,11 +25,13 @@ namespace Mars_Rover.Rover
             initD = direction[dir];
         }
 
+        //Get initial rover landing coordinates (randomly generated in the constructor
         public string getInitValues()
         {
             return Convert.ToString(initX) + " " + Convert.ToString(initY) + " " + initD;
         }
 
+        //Method used to rotate the rover using 'L' and 'R' as input commands
         private string rotationRover(string rot, string curRoverData)
         {
             int dir = 0;
@@ -43,10 +49,10 @@ namespace Mars_Rover.Rover
                 dir--;
                 if (dir < 0) dir = 3;
             }
-
             return Convert.ToString(direction[dir]);
         }
 
+        //Moves the rover using the input command string from a user. Also calls the rotationRover method to rotate the rover
         public string moveRover(string moveData, string curRoverData, int maxX, int maxY)
         {
             moveData = moveData.ToUpper();
@@ -80,11 +86,10 @@ namespace Mars_Rover.Rover
                     curX++;
                     if (curX >= maxX) curX = maxX - 1;
                 }
+                //Calls the rotationRover method to rotate the rover if the command string does not move the rover forward
                 else curD = rotationRover(Convert.ToString(moveData[i]), curD);
             }
-
             string finalDestination = Convert.ToString(curX) + " " + Convert.ToString(curY) + " " + curD;
-
             return finalDestination;
         }
     }

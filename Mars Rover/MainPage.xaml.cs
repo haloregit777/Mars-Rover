@@ -25,6 +25,7 @@ namespace Mars_Rover
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        //Creates an array of of 5 rover objects
         RoverCommands[] rovers = new RoverCommands[5];
 
         public MainPage()
@@ -32,6 +33,7 @@ namespace Mars_Rover
             this.InitializeComponent();
         }
 
+        //This is the button to launch the rovers and land them on Mars after choosing the plateau size and a maximum of 5 rovers. It also handles the visibility of various other elements
         private void startBTN_Click(object sender, RoutedEventArgs e)
         {
             if (this.mainGrid.Visibility == Visibility.Visible)
@@ -179,6 +181,7 @@ namespace Mars_Rover
             } 
         }
 
+        //Returns the user to the main screen to change the plateau size and the amount of rovers
         private void backBTN_Click(object sender, RoutedEventArgs e)
         {
             if (this.platGrid.Visibility == Visibility.Visible)
@@ -189,6 +192,7 @@ namespace Mars_Rover
             }
         }
 
+        //This button calls the method that moveds each rover consecutively based on the amount of rovers
         private void r1BTN_Click(object sender, RoutedEventArgs e)
         {
             announce.Text = "Rover commands executed successfully!";
